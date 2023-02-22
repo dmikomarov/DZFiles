@@ -34,4 +34,6 @@ public class ParamTest {
     $(".ty-product-filters__item-more").shouldHave(text(productCategory));
   }
 
+
+
 }
