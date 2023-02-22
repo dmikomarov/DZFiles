@@ -17,12 +17,12 @@ public class MethodSourceDZ2 {
 
   static Stream<Arguments> localDataProvider() {
     return Stream.of(
-            Arguments.of(Locale.ru, Arrays.asList("Продукт\n" +
+            Arguments.of(Locale.RU, Arrays.asList("Продукт\n" +
                     "Решения\n" +
                     "Ресурсы\n" +
                     "Предприятия\n" +
                     "Тарифы")),
-            Arguments.of(Locale.English, Arrays.asList("Product\n" +
+            Arguments.of(Locale.EN, Arrays.asList("Product\n" +
                     "Solutions\n" +
                     "Resources\n" +
                     "Enterprise\n" +
@@ -39,7 +39,7 @@ public class MethodSourceDZ2 {
   ) {
     open("https://miro.com/ru/");
     $(".ghharZ").click();
-    $(byText(locale.name())).click();
+    $("[data-locale="+locale.getDesc()+"]").click();
     $$(".fSddvK").shouldHave(CollectionCondition.texts(buttons));
   }
 
