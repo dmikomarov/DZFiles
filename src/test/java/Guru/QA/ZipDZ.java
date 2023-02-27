@@ -29,16 +29,18 @@ public class ZipDZ {
       while ((entry = zis.getNextEntry()) != null) {
 
 
-        if (entry.getName().contains("testxlxs.xls")) {
+        if (entry.getName().contains("descriptions.xlsx")) {
           XLS content = new XLS(zis);
-          assertThat(content.excel.getSheetAt(0).getRow(2).getCell(2).getStringCellValue()).contains("1");
-        } else if (entry.getName().contains("igor.pdf")) {
+          assertThat(content.excel.getSheetAt(0).getRow(0).getCell(1).getStringCellValue()).contains("Должность");
+        }
+        else if (entry.getName().contains("Igor.pdf")) {
           PDF content = new PDF(zis);
           assertThat(content.text).contains("Игорь Григорьев");
-        } else if (entry.getName().contains("testcsv.csv")) {
+        }
+        else if (entry.getName().contains("testCSV.csv")) {
           CSVReader reader = new CSVReader(new InputStreamReader(zis));
           List<String[]> content = reader.readAll();
-          assertThat(content.get(1)[1]).contains("79151111111");
+          assertThat(content.get(1)[1]).contains("Elmax");
         }
 
       }
