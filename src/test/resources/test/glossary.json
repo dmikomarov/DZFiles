@@ -1,7 +1,6 @@
 {
-    "title": "example glossary",
-    "GlossDiv": {
-      "title": "S",
-     "flag" : true
-    }
-  }
+  "name": "Bob",
+  "salary": 100000,
+  "married": true,
+  "hobbies": ["sport", "rock", "java"]
+}

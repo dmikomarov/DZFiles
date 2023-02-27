@@ -22,28 +22,25 @@ public class ZipDZ {
   @Test
   void zipParseTest() throws Exception {
     try (
-            InputStream resource = cl.getResourceAsStream("test/testDZ.zip");
-            ZipInputStream zis = resource == null ?
-                    new ZipInputStream(null)
-                    :
-                    new ZipInputStream(resource))
-            {
-      ZipEntry entry = zis.getNextEntry();
-      while (entry != null) {
-        String name = entry.getName();
+            InputStream resource = cl.getResourceAsStream("test123.zip");
+            ZipInputStream zis = new ZipInputStream(resource);
+    ) {
+      ZipEntry entry;
+      while ((entry = zis.getNextEntry()) != null) {
 
-        if (name.contains("testxl88xs.xls")) {
+
+        if (entry.getName().contains("testxlxs.xls")) {
           XLS content = new XLS(zis);
           assertThat(content.excel.getSheetAt(0).getRow(2).getCell(2).getStringCellValue()).contains("1");
-        } else if (name.contains("igor.pdf")) {
+        } else if (entry.getName().contains("igor.pdf")) {
           PDF content = new PDF(zis);
           assertThat(content.text).contains("Игорь Григорьев");
-        } else if (name.contains("testcsv.csv")) {
+        } else if (entry.getName().contains("testcsv.csv")) {
           CSVReader reader = new CSVReader(new InputStreamReader(zis));
           List<String[]> content = reader.readAll();
           assertThat(content.get(1)[1]).contains("79151111111");
         }
-        entry = zis.getNextEntry();
+
       }
     }
   }
